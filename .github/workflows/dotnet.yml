@@ -23,3 +23,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Upload Build Output
+      uses: actions/upload-artifact@v2
+      with:
+          path: HelloWorld/bin/*
