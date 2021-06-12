@@ -27,3 +27,30 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
           path: HelloWorld/bin/*
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Required mail server address:
+        server_address: smtp.gmail.com
+        # Required mail server port:
+        server_port: 465
+        # Required mail server username:
+        username: ${{secrets.Email}}
+        # Required mail server password:
+        password: ${{secrets.Email_Password}}
+        # Required mail subject:
+        subject: Github Actions job result
+        # Required recipients' addresses:
+        to: rranjan325@gmail.com,avanish82@gmail.com
+        # Required sender full name (address can be skipped):
+        from: RGit Hub CI Pipeline# <user@example.com>
+        # Optional whether this connection use TLS (default is true if server_port is 465)
+        secure: true
+        # Optional plain body:
+        body: Build job of ${{github.repository}} completed successfully!
+        # Optional HTML body read from file:
+        html_body: file://README.html
+        # Optional unsigned/invalid certificates allowance:
+        ignore_cert: true
+        # Optional converting Markdown to HTML (set content_type to text/html too):
+        convert_markdown: true
